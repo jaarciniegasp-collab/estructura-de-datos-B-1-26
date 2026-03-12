@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Catalogo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="components/footer/footer.css">
+    <link rel="stylesheet" href="components/header/header.css"> 
+</head>
+
+<body>
+
+<div id="header"></div>
+
+<main>
+
+<h2>Catálogo de Productos</h2>
+
+<div id="catalogo"></div>
+
+</main>
+
+<div id="footer"></div>
+
+
+<script src="js/MiCard.js"></script>
+
+<script>
+
+async function cargarComponente(id, url){
+const resp = await fetch(url);
+const html = await resp.text();
+document.getElementById(id).innerHTML = html;
+}
+
+cargarComponente("header","components/header/header.html");
+cargarComponente("footer","components/footer/footer.html");
+
+
+const productos = [
+
+{
+nombre:"Laptop",
+precio:"$900",
+descripcion:"Laptop con 16GB RAM"
+},
+
+{
+nombre:"Mouse",
+precio:"$20",
+descripcion:"Mouse inalámbrico"
+},
+
+{
+nombre:"Teclado",
+precio:"$35",
+descripcion:"Teclado mecánico"
+}
+
+];
+
+
+const catalogo = document.getElementById("catalogo");
+
+productos.forEach(p=>{
+
+const card = document.createElement("mi-card");
+
+card.setAttribute("nombre",p.nombre);
+card.setAttribute("precio",p.precio);
+card.setAttribute("descripcion",p.descripcion);
+
+catalogo.appendChild(card);
+
+});
+
+</script>
+
+</body>
+</html>
